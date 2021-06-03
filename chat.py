@@ -6,7 +6,12 @@ app = Flask(__name__)
 sockets = Sockets(app)
 
 def on_message(self, message):
-    self.send(message.upper())
+    if message == 'hello':
+        self.send('Вы поздоровались')
+    elif message == 'bye':
+        self.send('Вы попрощались')
+    else:
+        self.send('Я не знаю такой команды')
 
 @sockets.route('/echo')
 def echo_socket(ws):
