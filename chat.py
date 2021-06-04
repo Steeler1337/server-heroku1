@@ -17,9 +17,12 @@ def on_message(self, message):
 def echo_socket(ws):
     while True:
         message = ws.receive()
-        print(ws)
-        print(message)
-        on_message(ws,message)
+        if message == None:
+            self.send('Я не знаю такой команды')
+        else:
+            print(ws)
+            print(message)
+            on_message(ws,message)
         
 
 @app.route('/')
