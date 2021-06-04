@@ -15,7 +15,7 @@ def on_message(self, message):
 
 @sockets.route('/echo')
 def echo_socket(ws):
-    while not ws.closed:
+    while True:
         message = ws.receive()
         print(ws)
         print(message)
@@ -26,9 +26,6 @@ def echo_socket(ws):
 def hello():
     return 'Hello World!'
 
-@app.route('/echo_test')
-def echo_test():
-    return render_template('test.html')
 
 if __name__ == "__main__":
     from gevent import pywsgi
