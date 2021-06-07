@@ -3,18 +3,21 @@ from flask_sockets import Sockets
 
 app = Flask(__name__)
 sockets = Sockets(app)
-    
+
+def send_answer(self, message)
+    if message == 'Hey':
+        self.send('Вы поздоровались')
+    elif message == 'Bye':
+        self.senf('Вы попрощались')
+    else:
+        self.send('Я не знаю такой команды')    
+        
 @sockets.route('/echo')
 def echo_socket(ws):
     while True:
         message = ws.receive()
         print('Message from client: ' + message)
-        if message == 'Bye':
-            self.send('Вы попрощались')
-        elif message == 'Hey':
-            self.send('Вы поздоровались')
-        else:
-            self.send('Я не знаю такой команды')
+        send_answer(ws, message)
 
 
 @app.route('/')
