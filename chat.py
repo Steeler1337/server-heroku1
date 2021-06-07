@@ -1,29 +1,21 @@
 from flask import Flask, render_template
 from flask_sockets import Sockets
-import time
 
 app = Flask(__name__)
 sockets = Sockets(app)
-
-def on_message(self, message):
-    if message == 'hello':
-        self.send('Вы поздоровались')
-    elif message == 'bye':
-        self.send('Вы попрощались')
-    else:
-        self.send('Я не знаю такой команды')
-
+    
 @sockets.route('/echo')
 def echo_socket(ws):
     while True:
         message = ws.receive()
-        if message == None:
-            ws.send('Я не знаю такой команды')
+        print('Message from client: ' + message)
+        if message == 'Bye':
+            self.send('Вы попрощались')
+        elif message == 'Hey':
+            self.send('Вы поздоровались')
         else:
-            print(ws)
-            print(message)
-            on_message(ws,message)
-        
+            self.send('Я не знаю такой команды')
+
 
 @app.route('/')
 def hello():
