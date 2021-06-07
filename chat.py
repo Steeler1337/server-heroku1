@@ -8,7 +8,7 @@ def send_answer(self, message):
     if message == 'Hey':
         self.send('Вы поздоровались')
     elif message == 'Bye':
-        self.senf('Вы попрощались')
+        self.send('Вы попрощались')
     else:
         self.send('Я не знаю такой команды')    
 
