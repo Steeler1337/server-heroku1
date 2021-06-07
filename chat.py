@@ -4,14 +4,14 @@ from flask_sockets import Sockets
 app = Flask(__name__)
 sockets = Sockets(app)
 
-def send_answer(self, message)
+def send_answer(self, message):
     if message == 'Hey':
         self.send('Вы поздоровались')
     elif message == 'Bye':
         self.senf('Вы попрощались')
     else:
         self.send('Я не знаю такой команды')    
-        
+
 @sockets.route('/echo')
 def echo_socket(ws):
     while True:
